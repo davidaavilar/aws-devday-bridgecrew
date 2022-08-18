@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: S3 Bucket from AWS DevDay Brigdecrew
+Parameters:
+  MyBucket:
+    Description: Nombre del Bucket
+    Type: String
+    Default: "awsdevdaybridgcrewdavidaavilar"
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref MyBucket
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      VersioningConfiguration:
+        Status: Enabled
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls       : True
+        BlockPublicPolicy     : True
+        IgnorePublicAcls      : True
+        RestrictPublicBuckets : True
